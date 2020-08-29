@@ -2,13 +2,10 @@ public class MergeWithoutExtraSpace{
     public static void main(string args[]){
         int arr1[]={1,3,5,7,9},arr2[]={2,4,6,8,10};
         Approach1(arr1,arr2);
-        for(int i : arr1){
+        for(int i : arr1)
             System.out.print(i+" ");
-        }
-        System.out.print(" | ");
-        for(int i : arr2){
+        for(int i : arr2)
             System.out.print(i+" ");
-        }
         System.out.println();
     }
     public static void Approach1(int arr1[],int arr2[]){
@@ -28,14 +25,12 @@ public class MergeWithoutExtraSpace{
         }
     }
     public static void Approach2(int arr1[],int arr2[]){
-        int len1=arr1.length,len2=arr2.length;
-        int gap=len1+len2,pointer1=0,pointer2=0;
-        if(gap%2==0){
-            gap=gap/2;
-        }else{
-            gap=gap/2+1;
-        }
+        int len1=arr1.length,len2=arr2.length,pointer1=0,pointer2=0;
+        int gap=len1+len2;
+        gap=(gap/2)+(gap%2);
         while(gap>1){
+            pointer1=0;
+            pointer2=gap-1;
             //When both pointers are in 1st array
             while(pointer2<len1){
                 check(arr1,arr1,pointer1,pointer2);
@@ -43,22 +38,20 @@ public class MergeWithoutExtraSpace{
                 pointer2++;
             }
             //When 1st pointer in first array and 2nd in 2nd array
+            pointer2=0;
             while(pointer1<len1 && pointer2<len2){
                 check(arr1,arr2,pointer1,pointer2);
                 pointer1++;
                 pointer2++;
             }
             //When both pointers are in 1st array
+            pointer1=0;
             while(pointer2<len2){
                 check(arr2,arr2,pointer1,pointer2);
                 pointer1++;
                 pointer2++;
             }
-            if(gap%2==0){
-                gap=gap/2;
-            }else{
-                gap=gap/2+1;
-            }
+            gap=(gap/2)+(gap%2);
         }
     }
     public static void check(int arr1[],int arr2[],int pointer1,int pointer2){
