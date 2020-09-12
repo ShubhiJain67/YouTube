@@ -1,0 +1,61 @@
+public class Solution{
+    public static void main(String[] args) {
+        int arr[]={1,2,0,5,3,4,6,8,6,9,7,10};
+
+    }
+    private static void Approach1(int arr[],int len){
+        for(int i=0;i<len;i++){
+            boolean left=true,right=true;
+            for(int l=0;l<i;l++){
+                if(arr[l]>arr[i]){
+                    left=false;
+                    break;
+                }
+            }
+            if(left==false)
+                continue;
+            for(int r=i+1;r<len;r++){
+                if(arr[r]<arr[i]){
+                    right=false;
+                    break;
+                }
+            }
+            if(right==true)
+                System.out.print(i+1+" ");
+        }
+        System.out.println();
+    }
+    private static void Approach2(int arr[],int len){
+        if(len==0) return;
+        int leftMax[]=new int[len];
+        int rightMin[]new int[len];
+        leftMax[0]=arr[0];
+        rightMin[len-1]=arr[len-1];
+        for(int i=1;i<len;i++)
+            leftMax[i]=Math.Max(leftMax[i-1],arr[i-1]);
+        for(int i=len-2;i>=0;i--)
+            rightMin[i]=Math.min(rightMin[i+1],arr[i+1]);
+        for(int i=0;i<len;i++){
+            if(leftMax[i]<=arr[i] && rightMin[i]>=arr[i])
+                System.out.print(i+1+" ");
+        }
+        System.out.println();
+    }
+    private static void Approach3(int arr[],int len){
+        if(len==0) return;
+        int leftMax[]=new int[len];
+        leftMax[0]=arr[0];
+        for(int i=1;i<len;i++){
+            leftMax[i]=Math.Max(leftMax[i-1],arr[i-1]);
+        }
+        for(int i=len-1;i>=0;i--){
+            if(i==len-1)
+                rightMin=arr[len-1];
+            else
+                righMin=Math.min(rightMin,arr[i+1]);
+            if(leftMax[i]<=arr[i] && rightMin[i]>=arr[i])
+                System.out.print(i+1+" ");
+        }
+        System.out.println();
+    }
+}
