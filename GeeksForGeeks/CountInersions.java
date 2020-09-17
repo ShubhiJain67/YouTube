@@ -20,8 +20,8 @@ public class CountInersions {
         if(i==j)
             return 0;
         int mid=(i+j)/2;
-        int left=Count(arr,i,mid);
-        int right=Count(arr,mid+1,j);
+        int left=Approach2(arr,i,mid);
+        int right=Approach2(arr,mid+1,j);
         int merge=Merge(arr,i,mid,j);
         return left+right+merge;
     }
