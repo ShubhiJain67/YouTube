@@ -2,10 +2,21 @@
 public class CountInersions {
     public static void main(String[] args) {
         int arr[]={70,65,85,3,2};
-        int ans=Count(arr,0,arr.length-1);
+        int ans=Approach1(arr,0,arr.length-1);
         System.out.println("No of Inersions : "+ans );
     }
-    private static int Count(int [] arr,int i,int j){
+    private static int Approach1(int [] arr,int len){
+        int count=0;
+        for(int i=0;i<len;i++){
+            for(int j=i+1;j<len;j++){
+                if(arr[j]<arr[i]){
+                    count++;
+                }
+            }
+        }   
+        return count;
+    }
+    private static int Approach2(int [] arr,int i,int j){
         if(i==j)
             return 0;
         int mid=(i+j)/2;
